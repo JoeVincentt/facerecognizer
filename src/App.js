@@ -67,9 +67,7 @@ class App extends Component {
   };
 
   onButtonSubmit = () => {
-    this.setState(prevState => {
-      return { imageUrl: prevState.input };
-    });
+    this.setState({ imageUrl: this.state.input });
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
       .then(response => {

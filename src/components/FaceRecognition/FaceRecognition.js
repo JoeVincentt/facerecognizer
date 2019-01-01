@@ -6,7 +6,7 @@ const FaceRecognition = props => {
 
   return (
     <div className="center ma4">
-      <div className="absolute mb4">
+      <div className="absolute mb2">
         <img
           id="inputimage"
           src={imageUrl}
