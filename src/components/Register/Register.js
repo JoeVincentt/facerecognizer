@@ -20,7 +20,6 @@ class Register extends Component {
   };
 
   onSubmitSignUp = () => {
-    console.log(this.state);
     fetch("http://localhost:3000/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
