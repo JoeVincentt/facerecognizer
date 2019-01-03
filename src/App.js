@@ -57,7 +57,7 @@ class App extends Component {
   loadUser = userData => {
     this.setState({
       user: {
-        id: userData.id,
+        id: userData._id,
         name: userData.name,
         email: userData.email,
         entries: userData.entries,
@@ -90,6 +90,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
+
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
       .then(response => {
@@ -101,7 +102,7 @@ class App extends Component {
               id: this.state.user.id
             })
           })
-            .then(res => res.json())
+            .then(res => console.log(res))
             .then(count => {
               this.setState(Object.assign(this.state.user, { entries: count }));
             });
