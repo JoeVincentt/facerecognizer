@@ -38,21 +38,23 @@ const app = new Clarifai.App({
   apiKey: "32e8e3d21c8a4c5ea30a559ef94bcd28"
 });
 
+const initialState = {
+  input: "",
+  imageUrl: "",
+  box: {},
+  route: "signin",
+  isSignedIn: false,
+  user: {
+    id: "",
+    name: "",
+    email: "",
+    entries: 0,
+    joined: ""
+  }
+};
+
 class App extends Component {
-  state = {
-    input: "",
-    imageUrl: "",
-    box: {},
-    route: "signin",
-    isSignedIn: false,
-    user: {
-      id: "",
-      name: "",
-      email: "",
-      entries: 0,
-      joined: ""
-    }
-  };
+  state = initialState;
 
   loadUser = userData => {
     this.setState({
@@ -101,15 +103,13 @@ class App extends Component {
             body: JSON.stringify({
               id: this.state.user.id
             })
-          })
-            .then(res => console.log(res))
-            .then(count => {
-              this.setState(
-                Object.assign(this.state.user, {
-                  entries: this.state.user.entries + 1
-                })
-              );
-            });
+          }).then(count => {
+            this.setState(
+              Object.assign(this.state.user, {
+                entries: this.state.user.entries + 1
+              })
+            );
+          });
         }
         this.displayFaceBox(this.calculateFaceLocation(response));
       })
@@ -120,7 +120,7 @@ class App extends Component {
 
   onRouteChange = route => {
     if (route === "signout") {
-      this.setState({ isSignedIn: false });
+      this.setState(prevState => initialState);
     } else if (route === "home") {
       this.setState({ isSignedIn: true });
     }
