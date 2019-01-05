@@ -6,7 +6,7 @@ import Signin from "./components/Signin/Signin";
 import Register from "./components/Register/Register";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
-import Clarifai from "clarifai";
+
 // import Particles from "react-particles-js";
 
 import "./App.css";
@@ -33,10 +33,6 @@ import "./App.css";
 // };
 
 // initialize with your api key. This will also work in your browser via http://browserify.org/
-
-const app = new Clarifai.App({
-  apiKey: "32e8e3d21c8a4c5ea30a559ef94bcd28"
-});
 
 const initialState = {
   input: "",
@@ -92,9 +88,14 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-
-    app.models
-      .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+    fetch("http://localhost:3000/imageurl", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        input: this.state.input
+      })
+    })
+      .then(res => res.json())
       .then(response => {
         if (response) {
           fetch("http://localhost:3000/image", {
