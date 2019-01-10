@@ -7,30 +7,30 @@ import Register from "./components/Register/Register";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 
-// import Particles from "react-particles-js";
+import Particles from "react-particles-js";
 
 import "./App.css";
 
 // Overheating hardware...
-// const particlesOptions = {
-//   particles: {
-//     number: {
-//       value: 40,
-//       density: {
-//         enabled: true,
-//         value_area: 800
-//       }
-//     },
-//     line_linked: {
-//       shadow: {
-//         enable: true,
-//         color: "#3CA9D1",
-//         blur: 5
-//       }
-//     }
-//   },
-//   retina_detect: false
-// };
+const particlesOptions = {
+  particles: {
+    number: {
+      value: 40,
+      density: {
+        enabled: true,
+        value_area: 800
+      }
+    },
+    line_linked: {
+      shadow: {
+        enable: true,
+        color: "#3CA9D1",
+        blur: 5
+      }
+    }
+  },
+  retina_detect: false
+};
 
 // initialize with your api key. This will also work in your browser via http://browserify.org/
 
@@ -133,7 +133,7 @@ class App extends Component {
     const { isSignedIn, box, imageUrl, route, input } = this.state;
     return (
       <div className="App">
-        {/* <Particles className="particles" params={particlesOptions} /> */}
+        <Particles className="particles" params={particlesOptions} />
         <Navigation
           isSignedIn={isSignedIn}
           onRouteChange={this.onRouteChange}
