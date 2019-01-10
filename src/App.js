@@ -105,6 +105,7 @@ class App extends Component {
               id: this.state.user.id
             })
           }).then(count => {
+            this.setState({ input: "" });
             this.setState(
               Object.assign(this.state.user, {
                 entries: this.state.user.entries + 1
@@ -129,7 +130,7 @@ class App extends Component {
   };
 
   render() {
-    const { isSignedIn, box, imageUrl, route } = this.state;
+    const { isSignedIn, box, imageUrl, route, input } = this.state;
     return (
       <div className="App">
         {/* <Particles className="particles" params={particlesOptions} /> */}
@@ -145,6 +146,7 @@ class App extends Component {
               entries={this.state.user.entries}
             />
             <ImageLinkForm
+              input={input}
               onInputChange={this.onInputChange}
               onButtonSubmit={this.onButtonSubmit}
             />

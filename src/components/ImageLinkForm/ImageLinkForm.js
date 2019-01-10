@@ -2,7 +2,7 @@ import React from "react";
 import "./ImageLinkForm.css";
 
 const ImageLinkForm = props => {
-  const { onInputChange, onButtonSubmit } = props;
+  const { onInputChange, onButtonSubmit, input } = props;
 
   return (
     <div>
@@ -16,6 +16,7 @@ const ImageLinkForm = props => {
           <input
             className="f4 pa2 w-70 center"
             type="text"
+            value={input}
             onChange={onInputChange}
           />
           <button
